@@ -217,8 +217,8 @@ mod error;
 mod util;
 // To prevent a breaking change when targets are added, we always export the
 // register_custom_getrandom macro, so old Custom RNG crates continue to build.
-#[cfg(feature = "custom")]
-mod custom;
+// #[cfg(feature = "custom")]
+// mod custom;
 #[cfg(feature = "std")]
 mod error_impls;
 
@@ -335,8 +335,8 @@ cfg_if! {
                         any(target_arch = "wasm32", target_arch = "wasm64"),
                         target_os = "unknown"))] {
         #[path = "js.rs"] mod imp;
-    } else if #[cfg(feature = "custom")] {
-        use custom as imp;
+    // } else if #[cfg(feature = "custom")] {
+    //     use custom as imp;
     } else if #[cfg(all(any(target_arch = "wasm32", target_arch = "wasm64"),
                         target_os = "unknown"))] {
         compile_error!("the wasm*-unknown-unknown targets are not supported by \
